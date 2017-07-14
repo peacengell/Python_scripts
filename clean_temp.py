@@ -3,9 +3,9 @@
 # an will clear every files that is more that 5 days old
 
 # Fist steps Read the Directory and make a list of files found.
-
 import os
 from datetime import datetime, timedelta
+"""all module needed has been imported"""
 
 
 def find_all_files_dir_and_subdir(directory):
@@ -28,6 +28,7 @@ def Get_list_from_temp_dir(files_found, days_ago):
     days_ago = 15
     fithteen_days_ago = datetime.now() - timedelta(days=days_ago)
 
+    # loop throught the files and exclude the list below.
     for file in files_found:
         if "Python" not in file and "Port" not in file and "Taches" not in file:
             filetime = datetime.fromtimestamp(os.path.getctime(file))
@@ -37,6 +38,7 @@ def Get_list_from_temp_dir(files_found, days_ago):
                 #os.remove(file)
 
     else:
+        
         print("No file older than 15 Day's Found")
         #return list_dir
 
@@ -44,6 +46,11 @@ def Get_list_from_temp_dir(files_found, days_ago):
 
 if __name__ == '__main__':
 
-    directory = input("Enter Directory to Scan : ")
-    days_ago = int(input("Enter older days: "))
+    from sys import argv    
+    all = argv[1:]
+
+    directory, days_ago = all
+
+    # directory = input("Enter Directory to Scan : ")
+    # days_ago = int(input("Enter older days: "))
     Get_list_from_temp_dir(find_all_files_dir_and_subdir(directory), days_ago)

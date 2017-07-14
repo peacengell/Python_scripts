@@ -1,3 +1,5 @@
+#!/usr/bin python
+
 # This script will read the TEMP directory found 
 # in [ C:\Users\toto\Documents\Temp ] 
 # an will clear every files that is more that 5 days old
@@ -5,7 +7,6 @@
 # Fist steps Read the Directory and make a list of files found.
 
 import os
-
 from datetime import datetime, timedelta
 """all module needed has been imported"""
 
@@ -32,24 +33,38 @@ def Get_list_from_temp_dir(files_found, days_ago):
     for file in files_found:
         if "Python" not in file and "Port" not in file and "Taches" not in file:
             if os.path.islink(file) :
-                print(file)
+                pass
             else:
                 
                  filetime = datetime.fromtimestamp(os.path.getctime(file))
 
             if filetime < fithteen_days_ago:
-                print("files will be Deleted ", file)
+                """ Uncoment the line below will print only the files that's are older than days specified""" 
+    
+                #print("files will be Deleted ", file)
+                
+                """ Uncoment the line below will remove the files older than days specified""" 
+                
                 #os.remove(file)
 
     else:
         print("No file older than 15 Day's Found")
         
-        #return list_dir
-
 
 
 if __name__ == '__main__':
+    
+    from sys import argv    
+    all = argv[1:]
 
-    directory = input("Enter Directory to Scan : ")
-    days_ago = int(input("Enter older days: "))
-    Get_list_from_temp_dir(find_all_files_dir_and_subdir(directory), days_ago)
+    directory, days_ago = all
+    if directory == "" and days_ago == " ":
+        """This will print how to use this scipt. """
+        print("example : python clean.py /tmp  15")
+        print("Enter directory eg: /tmp" + " Enter days_ago eg: 10")
+    
+    else:
+
+        # directory = input("Enter Directory to Scan : ")
+        # days_ago = int(input("Enter older days: "))
+        Get_list_from_temp_dir(find_all_files_dir_and_subdir(directory), days_ago)
