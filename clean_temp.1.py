@@ -5,11 +5,12 @@
 # Fist steps Read the Directory and make a list of files found.
 
 import os
+
 from datetime import datetime, timedelta
 """all module needed has been imported"""
 
 def find_all_files_dir_and_subdir(directory):
-       
+    
     files_found = []
     
     for root, dirs, files in os.walk(directory):
