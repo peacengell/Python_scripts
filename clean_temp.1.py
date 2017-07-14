@@ -8,7 +8,8 @@
 
 import os
 from datetime import datetime, timedelta
-"""all module needed has been imported"""
+"""all module needed has been imported.
+This script if for removing files from a root directory and subdirectory"""
 
 def find_all_files_dir_and_subdir(directory):
     
@@ -58,6 +59,7 @@ if __name__ == '__main__':
     all = argv[1:]
 
     directory, days_ago = all
+
     if directory == "" and days_ago == " ":
         """This will print how to use this scipt. """
         print("example : python clean.py /tmp  15")
